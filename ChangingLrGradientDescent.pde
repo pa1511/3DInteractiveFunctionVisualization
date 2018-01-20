@@ -1,19 +1,19 @@
 public static class ChangingLrGradientDescent implements IOptimization{
 
-  private float lr;
-  private float startLr;
-  private float endLr;
-  private float lrStep;
+  private double lr;
+  private double startLr;
+  private double endLr;
+  private double lrStep;
   
-  public ChangingLrGradientDescent(float startLR, float endLR, int iter){
+  public ChangingLrGradientDescent(double startLR, double endLR, int iter){
     this.lr = startLR;
     this.startLr = startLR;
     this.endLr = endLR;
     this.lrStep = (startLR-endLR)/iter;
   }
   
-  public void optimize(IFunction fun, float... point){
-    float[] grad = fun.gradient(point);
+  public void optimize(IFunction fun, double... point){
+    double[] grad = fun.gradient(point);
     for(int i=0; i<point.length;i++){
       point[i] -= lr*grad[i];
     }

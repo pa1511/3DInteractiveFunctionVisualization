@@ -1,23 +1,23 @@
 public static class NesterovMomentGradientDescent implements IOptimization{
 
-  private float lr;
-  private float alpha;
-  private float[] velocity = new float[2];
-  private float[] pointTemp = new float[2];
+  private double lr;
+  private double alpha;
+  private double[] velocity = new double[2];
+  private double[] pointTemp = new double[2];
   
-  public NesterovMomentGradientDescent(float lr, float alpha){
+  public NesterovMomentGradientDescent(double lr, double alpha){
     this.lr = lr;
     this.alpha = alpha;
   }
   
-  public void optimize(IFunction fun, float... point){
+  public void optimize(IFunction fun, double... point){
     
     for(int i=0; i<pointTemp.length;i++){
       velocity[i] *= alpha;
       pointTemp[i] = point[i]+velocity[i];
     }  
     
-    float[] grad = fun.gradient(pointTemp);
+    double[] grad = fun.gradient(pointTemp);
     
     for(int i=0; i<point.length;i++){
       velocity[i] -= lr*grad[i];

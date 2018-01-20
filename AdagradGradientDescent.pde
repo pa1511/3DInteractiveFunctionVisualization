@@ -1,18 +1,19 @@
 public static class AdaGradGradientDescent implements IOptimization{
 
-  private float lr;
-  private float[] r = new float[2];
+  private double lr;
+  private double[] r = new double[2];
   
-  public AdaGradGradientDescent(float learning_rate){
+  public AdaGradGradientDescent(double learning_rate){
     this.lr = learning_rate;
   }
   
-  public void optimize(IFunction fun, float... point){
+  public void optimize(IFunction fun, double... point){
     
-    float[] grad = fun.gradient(point);
+    double[] grad = fun.gradient(point);
+    
     for(int i=0; i<point.length;i++){
       r[i] += grad[i] * grad[i];
-      point[i] -= lr*grad[i]/(1e-6+sqrt(r[i]));
+      point[i] -= lr*grad[i]/(1e-6+Math.sqrt(r[i]));
     }
     
   }

@@ -1,22 +1,22 @@
 public static class Ackley implements IFunction{
 
-  public float calculate(float... point){
-    float x = point[0];
-    float z = point[1];
+  public double calculate(double... point){
+    double x = point[0];
+    double z = point[1];
     
-    return (float)(-20*exp(-0.2*sqrt((x*x+z*z)/2))-exp((cos(2*PI*x)+cos(2*PI*z))/2))/3+5;
+    return (double)(-20*Math.exp(-0.2*Math.sqrt((x*x+z*z)/2))-Math.exp((Math.cos(2*PI*x)+Math.cos(2*PI*z))/2))/3+5;
   }
   
-  public float[] gradient(float... point){
+  public double[] gradient(double... point){
     //TODO: calculate gradient
-    return new float[]{0,0};
+    return new double[]{0,0};
   }
     
-  public float functionMax(){
+  public double functionMax(){
     return 1;
   }
   
-  public float functionMin(){
+  public double functionMin(){
     return -3;
   }
 

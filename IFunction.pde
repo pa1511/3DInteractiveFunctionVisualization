@@ -1,7 +1,7 @@
 public static interface IFunction{
-  float calculate(float... point);
+  double calculate(double... point);
   
-  float[] gradient(float... point);
+  double[] gradient(double... point);
   
   
   //TODO: perhaps the next two functions should not be part of IFunction!
@@ -10,12 +10,12 @@ public static interface IFunction{
    * Maximum expected return value of the function. <br>
    * This is only used when plotting so it is not vital to define correctly. 
    */
-  float functionMax();
+  double functionMax();
   
   /**
    * Mainimum expected return value of the function. <br>
    * This is only used when plotting so it is not vital to define correctly. 
    */
-  float functionMin();
+  double functionMin();
 
 }

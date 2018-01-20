@@ -1,16 +1,16 @@
 public static class MomentGradientDescent implements IOptimization{
 
-  private float lr;
-  private float[] decay_policy;
-  private float[] moment = new float[2];
+  private double lr;
+  private double[] decay_policy;
+  private double[] moment = new double[2];
   
-  public MomentGradientDescent(float learning_rate,float[] decay_policy){
+  public MomentGradientDescent(double learning_rate,double[] decay_policy){
     this.lr = learning_rate;
     this.decay_policy = decay_policy;
   }
   
-  public void optimize(IFunction fun, float... point){
-    float[] grad = fun.gradient(point);
+  public void optimize(IFunction fun, double... point){
+    double[] grad = fun.gradient(point);
     
     for(int i=0; i<point.length;i++){
       moment[i] += grad[i];

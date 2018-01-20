@@ -16,19 +16,19 @@ public static class LearningSquaredErrorFunction implements IFunction{
     }
     int N = lines.size();
     
-    float[][] X = new float[N][];
-    float[] y = new float[N];
+    double[][] X = new double[N][];
+    double[] y = new double[N];
     
     for(int i=0; i<N; i++){
       String line = lines.get(i);
       String[] lineElem = line.split(",");
       
-      X[i] = new float[lineElem.length-1];
+      X[i] = new double[lineElem.length-1];
 
       for(int j=0; j<X[i].length;j++){
-        X[i][j] = Float.parseFloat(lineElem[j]);
+        X[i][j] = Double.parseDouble(lineElem[j]);
       }
-      y[i] = Float.parseFloat(lineElem[lineElem.length-1]);
+      y[i] = Double.parseDouble(lineElem[lineElem.length-1]);
     }  
   
     return new LearningSquaredErrorFunction(X,y,prototype);  
@@ -37,38 +37,39 @@ public static class LearningSquaredErrorFunction implements IFunction{
   
   
   //===================================================================================
-  private final float[][] inputs;
-  private final float[] values;
+  private final double[][] inputs;
+  private final double[] values;
+  private double scale = 10;
   private final IPrototypeFunction prototype;
 
-  public LearningSquaredErrorFunction(float[][] X, float[] y, IPrototypeFunction prototypeFunction){
+  public LearningSquaredErrorFunction(double[][] X, double[] y, IPrototypeFunction prototypeFunction){
     this.inputs = X;
     this.values = y;
     this.prototype = prototypeFunction;
   }
   
   
-  public float calculate(float... point){
+  public double calculate(double... point){
 
-    float error = 0;
+    double error = 0;
     
     for(int i=0; i<inputs.length;i++){
-      float v = prototype.calculate(point,inputs[i]);
+      double v = prototype.calculate(point,inputs[i]);
       error+=Math.pow(v-values[i],2);
     }
     
-    return error/inputs.length;
+    return error/inputs.length/scale;
   }
   
-  public float[] gradient(float... point){
+  public double[] gradient(double... point){
 
-    float[] gradient = new float[point.length];
+    double[] gradient = new double[point.length];
     
     for(int i=0; i<inputs.length;i++){
-      float v = prototype.calculate(point,inputs[i]);
-      float[] gradi = prototype.gradient(point,inputs[i]);
+      double v = prototype.calculate(point,inputs[i]);
+      double[] gradi = prototype.gradient(point,inputs[i]);
       for(int j=0; j<gradient.length;j++){
-        gradient[j]+=2*(v-values[i])*gradi[j];
+        gradient[j]+=2*(v-values[i])*gradi[j]/scale;
       }
     }
 
@@ -79,12 +80,12 @@ public static class LearningSquaredErrorFunction implements IFunction{
     return gradient;
   }
   
-  public float functionMax(){
+  public double functionMax(){
     //only used when plotting so it is not vital that this number is correct
     return 10;
   }
   
-  public float functionMin(){
+  public double functionMin(){
     return 0;
   }
 
@@ -93,25 +94,25 @@ public static class LearningSquaredErrorFunction implements IFunction{
 
 public static interface IPrototypeFunction{
   
-  public float calculate(float[] param,float[] Xi);
+  public double calculate(double[] param,double[] Xi);
   
-  public float[] gradient(float[] param,float[] Xi);
+  public double[] gradient(double[] param,double[] Xi);
 
   public static LineFunction linePrototype = new LineFunction();
 
 
   public static class LineFunction implements IPrototypeFunction{
   
-    public float calculate(float[] param,float[] Xi){
-      float k = param[0];
-      float l = param[1];
+    public double calculate(double[] param,double[] Xi){
+      double k = param[0];
+      double l = param[1];
       
       return k*Xi[0]+l;
     }
   
-    public float[] gradient(float[] param,float[] Xi){
+    public double[] gradient(double[] param,double[] Xi){
     
-        return new float[]{Xi[0],1};
+        return new double[]{Xi[0],1};
     }
     
   }

@@ -1,28 +1,28 @@
 public static class Sigmoid implements IFunction{
 
-  public float calculate(float... point){
-    float x = point[0];
-    float z = point[1];
-    return 2*(1.0/(1+exp(-x))+1.0/(1+exp(-z)));
+  public double calculate(double... point){
+    double x = point[0];
+    double z = point[1];
+    return 2*(1.0/(1+Math.exp(-x))+1.0/(1+Math.exp(-z)));
   }
   
-  public float[] gradient(float... point){
-    float x = point[0];
-    float vx = 1.0/(1+exp(-x));
-    float gx = 2*vx*(1-vx);
+  public double[] gradient(double... point){
+    double x = point[0];
+    double vx = 1.0/(1+Math.exp(-x));
+    double gx = 2*vx*(1-vx);
 
-    float z = point[1];
-    float vz = 1.0/(1+exp(-z));
-    float gz = 2*vz*(1-vz);
+    double z = point[1];
+    double vz = 1.0/(1+Math.exp(-z));
+    double gz = 2*vz*(1-vz);
 
-    return new float[]{gx,gz};
+    return new double[]{gx,gz};
   }
     
-  public float functionMax(){
+  public double functionMax(){
     return 4;
   }
   
-  public float functionMin(){
+  public double functionMin(){
     return 0;
   }
 

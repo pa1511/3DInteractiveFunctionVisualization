@@ -1,13 +1,13 @@
 public static class GradientDescent implements IOptimization{
 
-  private float lr;
+  private double lr;
   
-  public GradientDescent(float learning_rate){
+  public GradientDescent(double learning_rate){
     this.lr = learning_rate;
   }
   
-  public void optimize(IFunction fun, float... point){
-    float[] grad = fun.gradient(point);
+  public void optimize(IFunction fun, double... point){
+    double[] grad = fun.gradient(point);
     for(int i=0; i<point.length;i++){
       point[i] -= lr*grad[i];
     }

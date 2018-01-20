@@ -1,15 +1,15 @@
 public static class SimplePlottingConfig implements IPlottingConfig{
 
-  private float point_density;
+  private double point_density;
   //
-  private float varMin;
-  private float varMax;
-  private float interval;
-  private float step;
+  private double varMin;
+  private double varMax;
+  private double interval;
+  private double step;
   //
   private int ball_size;
 
-  public SimplePlottingConfig(float point_density,float varMax,float varMin, float step, int ball_size){
+  public SimplePlottingConfig(double point_density,double varMax,double varMin, double step, int ball_size){
     this.point_density = point_density;
     //
     this.varMin = varMin;
@@ -20,19 +20,19 @@ public static class SimplePlottingConfig implements IPlottingConfig{
     this.ball_size = ball_size;
     
   }
-  public float getPointDensity(){
+  public double getPointDensity(){
     return point_density;
   }
-  public float getVarMin(){
+  public double getVarMin(){
     return varMin;
   }
-  public float getVarMax(){
+  public double getVarMax(){
     return varMax;
   }
-  public float getInterval(){
+  public double getInterval(){
     return interval;
   }
-  public float getStep(){
+  public double getStep(){
     return step;
   }
   public int getBallSize(){

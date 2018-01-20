@@ -1,20 +1,20 @@
 public static class AdamGradientDescent implements IOptimization{
 
-  private float lr;
-  private float d1;
-  private float d2;
-  private float[] r = new float[2];
-  private float[] s = new float[2];
-  private float t = 0;
+  private double lr;
+  private double d1;
+  private double d2;
+  private double[] r = new double[2];
+  private double[] s = new double[2];
+  private double t = 0;
   
-  public AdamGradientDescent(float learning_rate,float decay1, float decay2){
+  public AdamGradientDescent(double learning_rate,double decay1, double decay2){
     this.lr = learning_rate;
     this.d1 = decay1;
     this.d2 = decay2;
   }
   
-  public void optimize(IFunction fun, float... point){
-    float[] grad = fun.gradient(point);
+  public void optimize(IFunction fun, double... point){
+    double[] grad = fun.gradient(point);
     
 
     t++;
@@ -23,10 +23,10 @@ public static class AdamGradientDescent implements IOptimization{
       s[i] = d1*s[i]+(1-d1)*grad[i];
       r[i] = d2*r[i]+(1-d2)*grad[i]*grad[i];
       
-      float s_p = s[i]/(1-(float)Math.pow(d1,t));
-      float r_p = r[i]/(1-(float)Math.pow(d2,t));
+      double s_p = s[i]/(1-(double)Math.pow(d1,t));
+      double r_p = r[i]/(1-(double)Math.pow(d2,t));
       
-      point[i] -= lr*s_p/(sqrt(r_p)+1e-7);
+      point[i] -= lr*s_p/(Math.sqrt(r_p)+1e-7);
     }
   }
   

@@ -1,11 +1,11 @@
 public static interface IPlottingConfig{
 
-  float getPointDensity();
+  double getPointDensity();
   //
-  float getVarMin();
-  float getVarMax();
-  float getInterval();
-  float getStep();
+  double getVarMin();
+  double getVarMax();
+  double getInterval();
+  double getStep();
   //
   int getBallSize();
 
