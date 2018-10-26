@@ -33,35 +33,35 @@ double[] point = new double[2];
 //==================================================================
 //Current function
 
+//EXAMPLE0
+//IFunction fun = new Square();
+//IPlottingConfig plottingConfig = new SimplePlottingConfig(4,3,-3,0.3,10);
+
 //EXAMPLE1
 //IFunction fun = new Deceptive();
 //IPlottingConfig plottingConfig = new SimplePlottingConfig(4,10,-10,2,10);
 
 //EXAMPLE2
-//IFunction fun = new MultyLocal();
-//IPlottingConfig plottingConfig = new SimplePlottingConfig(8,6,-6,2,10);
+IFunction fun = new MultyLocal();
+IPlottingConfig plottingConfig = new SimplePlottingConfig(8,6,-6,2,10);
 
 //EXAMPLE3
 //IFunction fun = new Eliptic();
-//IPlottingConfig plottingConfig = new SimplePlottingConfig(4,10,-10,1,10);
+//IPlottingConfig plottingConfig = new SimplePlottingConfig(4,3,-3,0.3,10);
 
 //EXAMPLE4
 //IFunction fun = new Sigmoid();
 //IPlottingConfig plottingConfig = new SimplePlottingConfig(4,10,-10,1,10);
 
 //EXAMPLE5
-IFunction fun = new DerivativeFunctionWrapper(new Ackley());
-IPlottingConfig plottingConfig = new SimplePlottingConfig(20,3,-3,2,10);
-
-//EXAMPLE6
-//IFunction fun = LearningSquaredErrorFunction.load("/home/paf/workspace-java/processing-projects/Function3DInteractiveVisual/data/linear-noise-data.txt",IPrototypeFunction.linePrototype);
+//IFunction fun = new DerivativeFunctionWrapper(new Ackley());
 //IPlottingConfig plottingConfig = new SimplePlottingConfig(20,3,-3,2,10);
 
-//EXAMPLE7
+//EXAMPLE6
 //IFunction fun = new BananaFunction();
 //IPlottingConfig plottingConfig = new SimplePlottingConfig(6,8,-8,1,10);
 
-//EXAMPLE8
+//EXAMPLE7
 //IFunction fun = new Matyas();
 //IPlottingConfig plottingConfig = new SimplePlottingConfig(8,5,-5,1,10);
 
@@ -69,12 +69,12 @@ boolean smood = false;
 
 //==================================================================
 //Optimization algorithm
-IOptimization optimizer = //new GradientDescent(0.01);
-                          //new MomentGradientDescent(0.05,new double[]{0.8,0.8});
+IOptimization optimizer = //new GradientDescent(0.5);
+                          //new MomentGradientDescent(2,new double[]{0.8,0.8});
                           //new ChangingLrGradientDescent(2,0.01,500);
-                          //new NesterovMomentGradientDescent(2,0.8);
-                          //new AdaGradGradientDescent(1);
-                          //new RMSProp(1,0.4);
+                          //new NesterovMomentGradientDescent(2.5,0.25);
+                          //new AdaGradGradientDescent(2.5);
+                          //new RMSProp(2.5,0.5);
                           new AdamGradientDescent(2.5,0.9,0.999);
 //==================================================================
 //Plotting config
