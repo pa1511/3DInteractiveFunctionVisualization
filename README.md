@@ -44,6 +44,8 @@ The graph is also interactive. It allows the following interactions:
 * decrease the learning rate by factor 2 (/).
 
 ## Examples of visualization
+Animated example:
+![animated](images/visual.gif)
 
 Ackely function
 
